@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="timer"></div>
+  
+  <script>
+    function count(minutes) {
+      let seconds = minutes * 60;
+      const timer = document.getElementById("timer");
+      
+      function updateTimer() {
+        const displayMin = Math.floor(seconds / 60);
+        const displaySec = seconds % 60;
+        
+        timer.textContent = displayMin + " : " + displaySec;
+        
+        if (displaySec === 59) {
+          alert('На 1 минуту стало меньше!');
+        }
+        if (seconds > 0) {
+          setTimeout(() => {
+            seconds--;
+            updateTimer();
+          }, 1000);
+        } else {
+          timer.textContent = 'Время вышло!';
+        }
+      }
+      updateTimer();
+    }
+    count(2);
+  </script>
+</body>
+</html>
